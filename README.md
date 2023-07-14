@@ -2,7 +2,7 @@
 Simple Object Notation (SON) is an easier and more strict way of storing data
 
 # Structure
-The structure of SON is simple. You write the key name and then the value
+The structure of SON is simple. You write the key = value. That's it.
 ```
 key = "value"
 ```
@@ -24,7 +24,9 @@ There are 4 types of strings: string, raw, byte, and char
 
 ### String
 String is formatted as the following:
+
+
 <picture>
-    <source srcset="./static/images/string-flowchart-dark.drawio.svg"  media="(prefers-color-scheme: dark)">
-    <img src="./static/images/string-flowchart-light.drawio.svg">
+    <source alt="String Flowchart" srcset="./images/string-flowchart-dark.drawio.png"  media="(prefers-color-scheme: dark)">
+    <img alt="String Flowchart" src="./images/string-flowchart-light.drawio.svg">
 </picture>
