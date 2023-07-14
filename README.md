@@ -24,4 +24,7 @@ There are 4 types of strings: string, raw, byte, and char
 
 ### String
 String is formatted as the following:
-![String Flow Chart](./static/images/string-flowchart.png)
+<picture>
+    <source srcset="./static/images/string-flowchart-dark.drawio.svg"  media="(prefers-color-scheme: dark)">
+    <img src="./static/images/string-flowchart-light.drawio.svg">
+</picture>
