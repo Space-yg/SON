@@ -290,3 +290,334 @@ not a number 2 = NaN
 ```
 
 # Array
+Arrays are simple to write. There are 2 ways to write arrays.
+
+## Single Element Araay
+If an array has one element, you can write it like this `[value]`
+```
+array 1 = ["value"]
+array 2 = [123]
+```
+
+## Multi-Element Array
+If an array has more than one element, you will write the following syntax:
+```
+array = [
+  value 1
+  value 2
+  value 3
+  ...
+]
+```
+You **must** have each value on a separate line. You **must** have all values have the same indentation.
+
+The following is an **invalid** array because one of the elements has a different indentation than the others.
+```
+array = [
+  "value" // This is OK ✅
+  "value" // This is OK ✅
+"value" // This is not OK ❌
+]
+```
+
+The following array is **valid** because all elements have the same indentation.
+```
+array = [
+"value"
+"value"
+"value"
+]
+```
+
+## Same Element Type Array
+If all of the elements in an array have the same type, then compute this array to be only this type with the same length.
+```
+array = [
+  "Hi"
+  "This"
+  "is"
+  "an"
+  "array"
+  "of"
+  "type"
+  "string"
+]
+```
+The above will be computed as the following.
+```cpp
+// This is an example in C++. It can be made with any programming language.
+string array[8] = {
+  "Hi",
+  "This",
+  "is",
+  "an",
+  "array",
+  "of",
+  "type",
+  "string"
+};
+```
+
+## Different Element Type Array
+Arrays can contain different values.
+```
+array = [
+  "string"
+  123
+  true
+]
+```
+
+You can have arrays in arrays.
+```
+array = [
+  [
+    "this is another array"
+  ]
+]
+```
+
+# Dictionary
+There are 2 ways to make a dictionary: using a : or = {}
+```
+dictionary 1:
+  key = "value"
+dictionary 2 = {
+  key = "value"
+}
+```
+In the example, `dictionary 1` and `dictionary 2` are the same dictionary.
+
+When using : to make a dictionary, you **must** indent all the key-value pairs inside.
+
+You can stack dictionaries inside of each other.
+```
+dictionary:
+  key 1 = "value"
+  key 2 = "value"
+  dictionary:
+    another key = "value"
+  key 3 = "value"
+```
+
+# Regex
+Regular Expressions can be written as the following:
+```
+regex = flavors/pattern/flags
+```
+Example:
+```
+regex 1 = /abc/ // Normal pattern
+regex 2 = /abc/i // Case insensitive flag
+regex 3 = py/abc/i // Only for python
+regex 3 = py|js/abc/i // Only for python and javascript
+```
+`regex 1` and `regex 1` have a flavor of any. This means that it can be used in any programming language, but not all programming languages support the same patterns and flags.
+
+## Different Regex Flavor
+If the programming language you are using is a different one from the flavor of a regex, you **must** add a class to manage that regex. Here is an example in Python:
+```py
+class OtherRegexFlavor:
+    """A class for a regex that is not a python regex."""
+    def __init__(self, full: str, flavors: list[str], pattern: str, flags: str) -> None:
+        self.full = full
+        self.regex = f"/{pattern}/{flags}"
+        self.flavors = flavors
+        self.pattern = pattern
+        self.flags = flags
+```
+Whenever the parser finds a regex with a flavor that is not `py`, `python`, or no flavor, a new `OtherRegexFlavor` object gets created and passed as the value.
+
+# Timestamp
+There are many different ways to write timestamps. The format follows some of the [ISO 8601](https://en.m.wikipedia.org/wiki/ISO_8601) standards.
+
+All numbers must be zero-padded. For example, the month of March should not be written as `3` but as `03` instead.
+
+All values must be valid date or time. For example, you cannot have day 31 in February.
+
+## Timestamp as Number
+**Disclaimer: This format is not part of ISO 8601.** It is just a format to make things easier.
+
+You can write an integer or float number and add the suffix `t`. This will indicate that this number is a timestamp.
+```
+timestamp = 123t
+```
+`t` **must** be at the very end, even after the integer and float identifiers `i` and `f`, respectively.
+
+## Date
+Here are the formats for the date:
+```
+year = DYYYY
+year-day = YYYY-DDD
+yearday = DYYYYDDD
+year-week = YYYY-Wwww
+yearweek = YYYYWwww
+year-week-day = YYYY-Wwww-D
+yearweekday = YYYYWwwwD
+year-month = YYYY-MM // No YYYYMM ❌
+year-month day = YYYY-MM-DD
+yearmonthday = DYYYYMMDD
+```
+The prefix `D` is **not** in the ISO 8601 standard, but it is used here to differentiate between normal numbers and dates. You can add the prefix `D` to any date.
+
+### Terms
+#### YYYY
+The year from `0000` to `9999`.
+
+#### MM
+The month from `01` to `12`.
+
+#### Www
+The week from `W01` to `W53`.
+
+#### DDD
+The day from `001` to `365` or `366` if it is a leap year.
+
+#### DD
+The day from `01` to `31` depending on the month.
+
+#### D (not the prefix)
+The day from `1` to `7`. Monday is day `1`. Yeah, it's annoying...
+
+## Time
+You can write time in multiple formats.
+```
+hour = Thh
+hourmin = Thhmm
+hourminseconds = Thhmmss
+hourminsecondsmilliseconds = Thhmmss.ssss
+hour:min = hh:mm
+hour:min:seconds = hh:mm:ss
+hour:min:seconds:milliseconds = hh:mm:ss.ssss
+```
+You can add a `T` at the beginning of each one, but `T` is a **must** for the ones that have it.
+
+### Terms
+#### T
+Time.
+
+#### hh
+The hour from `00` to `24`.
+
+#### mm
+The minutes from `00` to `60`.
+
+#### ss
+The seconds from `00` to `60`.
+
+#### .ssss
+The milliseconds. A dot `.` or a comma `,` is allowed for the seconds.
+
+## Time Zone
+Here are the following formats to specify the timezone:
+```
+utc = <time>Z
+utc+hour = <time>±hh
+utc+hourmin = <time>±hhmm
+utc+hour:min = <time>±hh:mm
+```
+
+### Terms
+#### \<time>
+A time from [Time](#time)
+
+#### Z
+The time is UTC.
+
+#### ±hh, ±hhmm, and ±hh:mm
+The time plus or minus UTC. Minus sign `−` (U+2212) and hyphen-minus sign `-` (U+002D) can be used to indicate negativity.
+
+## Date and Time
+You can combine the date with the time in the format `<date>T<time>`.
+```
+date and time = 2006-1-28T12:5:30.1234
+```
+
+## Duration
+The following can be used to format a duration time:
+```
+year = PnY
+month = PnM
+week = PnW
+day = PnD
+hour = PTnH
+minute = PTnM
+seconds = PTnS
+yearmonthdayhourminutesecond 1 = PnYnMnDTnHnMnS
+yearmonthdayhourminutesecond 2 = PYYYYMMDDThhmmss
+year-month-dayThour:minute:second = PYYYY-MM-DDThh:mm:ss
+date and time = P<date>T<Ttime>
+```
+You can combine the date and the time however you want, but it **must** follow the format `P<date>T<Ttime>`.
+
+### Terms
+#### P
+Period. It is used to specify that this date is a duration.
+
+#### Y, M, W, D, T, H, M, and S
+These are constant characters.
+##### Y
+Year.
+##### M
+Month.
+##### W
+Week.
+##### T
+Time.
+##### D
+Day.
+##### H (after T)
+Hour.
+##### M (after T)
+Minutes.
+##### S
+Seconds.
+
+#### n
+Any number.
+
+#### \<date>
+A [Date](#date).
+
+#### \<time>
+A [Time](#time).
+
+## Time Intervals
+The following formats can be used to represent time intervals:
+```
+<start>/<end>
+<start>/<duration>
+<duration>/<end>
+<duration>
+```
+
+### Terms
+#### \<start> and \<end>
+These are [Time](#time), [Date](#date), or [Date and Time](#date-and-time).
+
+#### \<duration>
+This is a [Duration](#duartion).
+
+## Repeating Intervals
+The following formats can be used to represent repeating intervals:
+```
+Rn/<interval>
+R/<interval>
+```
+
+### Terms
+#### R
+Repeating.
+
+#### n
+Any number.
+
+#### \<interval>
+A [Time Interval](#time-interval).
+
+# Other
+## Null
+nothing...
+```
+key = null
+```
