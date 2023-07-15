@@ -149,8 +149,8 @@ Here is the structure of a number:
 
 
 <picture>
-    <source alt="String Flowchart" srcset="./images/number-flowchart-dark.drawio.svg"  media="(prefers-color-scheme: dark)">
-    <img alt="String Flowchart" src="./images/number-flowchart-light.drawio.svg">
+    <source alt="Number Flowchart" srcset="./images/number-flowchart-dark.drawio.svg"  media="(prefers-color-scheme: dark)">
+    <img alt="Number Flowchart" src="./images/number-flowchart-light.drawio.svg">
 </picture>
 
 
@@ -299,6 +299,15 @@ not a number 2 = NaN
 ```
 
 # Array
+Here is how arrays are structured:
+
+
+<picture>
+    <source alt="Array Flowchart" srcset="./images/array-flowchart-dark.drawio.svg"  media="(prefers-color-scheme: dark)">
+    <img alt="Array Flowchart" src="./images/array-flowchart-light.drawio.svg">
+</picture>
+
+
 Arrays are simple to write. There are 2 ways to write arrays.
 
 ## Single Element Araay
