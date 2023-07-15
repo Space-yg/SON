@@ -1,5 +1,5 @@
 # SON
-Simple Object Notation (SON) is an easier and more strict way of storing data
+Simple Object Notation (SON) is an easier and more strict way of storing data.
 
 # Structure
 ## Key-value Pairs
@@ -75,14 +75,14 @@ String is formatted as the following:
 
 
 <picture>
-    <source alt="String Flowchart" srcset="./images/string-flowchart-dark.drawio.png"  media="(prefers-color-scheme: dark)">
+    <source alt="String Flowchart" srcset="./images/string-flowchart-dark.drawio.svg"  media="(prefers-color-scheme: dark)">
     <img alt="String Flowchart" src="./images/string-flowchart-light.drawio.svg">
 </picture>
 
 
 You can use double " or single ' quotation. There is no difference.
 
-You can add a backslash \ by just typing it. If you don't want to escape a character but add a backslash, add \\
+You can add a backslash \ by just typing it. If you don't want to escape a character but add a backslash, add another \
 
 If you want to add double " or single ' quotation in a double " or single ' quotated string, respectively, just write it :D. The parser will just check if the beginning and end of the string have the same quotations.
 
