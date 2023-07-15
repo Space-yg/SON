@@ -63,6 +63,7 @@ Here is the list of the data types:
 - [Array](#array)
 - [Dictionary](#dictionary)
 - [Regex](#regex)
+- [URL](#url)
 - [Timestamp](#timestamp)
 - [Other](#other)
 
@@ -432,6 +433,19 @@ class OtherRegexFlavor:
         self.flags = flags
 ```
 Whenever the parser finds a regex with a flavor that is not `py`, `python`, or no flavor, a new `OtherRegexFlavor` object gets created and passed as the value.
+
+# URL
+You can represent a URL with just the link.
+```
+full url = https://www.google.com
+url = www.google.com
+url path = www.google.com/path
+url params = www.google.com?search=cats
+relative path = ./path
+```
+When parsing a URL, you **must** use the programming language's standard library for parsing URLs.
+
+You **can** put a URL in a string. This will prevent the program from making the URLs into objects which could make the program faster.
 
 # Timestamp
 There are many different ways to write timestamps. The format follows some of the [ISO 8601](https://en.m.wikipedia.org/wiki/ISO_8601) standards.
