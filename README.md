@@ -377,8 +377,17 @@ array = [
 ]
 ```
 
+You can have dictionaries in arrays.
+```
+array = [
+  {
+    key = "this is another dictionary"
+  }
+]
+```
+
 # Dictionary
-There are 2 ways to make a dictionary: using a : or = {}
+There are 2 ways to make a dictionary: using a `:` or `= {}`
 ```
 dictionary 1:
   key = "value"
@@ -388,7 +397,7 @@ dictionary 2 = {
 ```
 In the example, `dictionary 1` and `dictionary 2` are the same dictionary.
 
-When using : to make a dictionary, you **must** indent all the key-value pairs inside.
+When using `:` to make a dictionary, you **must** indent all the key-value pairs inside.
 
 You can stack dictionaries inside of each other.
 ```
@@ -401,18 +410,14 @@ dictionary:
 ```
 
 # Regex
-Regular Expressions can be written as the following:
-```
-regex = flavors/pattern/flags
-```
-Example:
+Regular Expressions can be written in the following pattern: `flavors/pattern/flags`.
 ```
 regex 1 = /abc/ // Normal pattern
 regex 2 = /abc/i // Case insensitive flag
 regex 3 = py/abc/i // Only for python
-regex 3 = py|js/abc/i // Only for python and javascript
+regex 4 = py|js/abc/i // Only for python and javascript
 ```
-`regex 1` and `regex 1` have a flavor of any. This means that it can be used in any programming language, but not all programming languages support the same patterns and flags.
+`regex 1` and `regex 2` have a flavor of any. This means that it can be used in any programming language, but not all programming languages support the same patterns and flags.
 
 ## Different Regex Flavor
 If the programming language you are using is a different one from the flavor of a regex, you **must** add a class to manage that regex. Here is an example in Python:
@@ -447,16 +452,16 @@ timestamp = 123t
 ## Date
 Here are the formats for the date:
 ```
-year = DYYYY
-year-day = YYYY-DDD
-yearday = DYYYYDDD
-year-week = YYYY-Wwww
-yearweek = YYYYWwww
-year-week-day = YYYY-Wwww-D
-yearweekday = YYYYWwwwD
-year-month = YYYY-MM // No YYYYMM ❌
-year-month day = YYYY-MM-DD
-yearmonthday = DYYYYMMDD
+DYYYY
+YYYY-DDD
+DYYYYDDD
+YYYY-Wwww
+YYYYWwww
+YYYY-Wwww-D
+YYYYWwwwD
+YYYY-MM // No YYYYMM ❌
+YYYY-MM-DD
+DYYYYMMDD
 ```
 The prefix `D` is **not** in the ISO 8601 standard, but it is used here to differentiate between normal numbers and dates. You can add the prefix `D` to any date.
 
@@ -482,13 +487,13 @@ The day from `1` to `7`. Monday is day `1`. Yeah, it's annoying...
 ## Time
 You can write time in multiple formats.
 ```
-hour = Thh
-hourmin = Thhmm
-hourminseconds = Thhmmss
-hourminsecondsmilliseconds = Thhmmss.ssss
-hour:min = hh:mm
-hour:min:seconds = hh:mm:ss
-hour:min:seconds:milliseconds = hh:mm:ss.ssss
+Thh
+Thhmm
+Thhmmss
+Thhmmss.ssss
+hh:mm
+hh:mm:ss
+hh:mm:ss.ssss
 ```
 You can add a `T` at the beginning of each one, but `T` is a **must** for the ones that have it.
 
@@ -511,10 +516,10 @@ The milliseconds. A dot `.` or a comma `,` is allowed for the seconds.
 ## Time Zone
 Here are the following formats to specify the timezone:
 ```
-utc = <time>Z
-utc+hour = <time>±hh
-utc+hourmin = <time>±hhmm
-utc+hour:min = <time>±hh:mm
+<time>Z
+<time>±hh
+<time>±hhmm
+<time>±hh:mm
 ```
 
 ### Terms
@@ -530,23 +535,21 @@ The time plus or minus UTC. Minus sign `−` (U+2212) and hyphen-minus sign `-` 
 ## Date and Time
 You can combine the date with the time in the format `<date>T<time>`.
 ```
-date and time = 2006-1-28T12:5:30.1234
+date and time = 2006-1-28T12:05:30.1234
 ```
 
 ## Duration
 The following can be used to format a duration time:
 ```
-year = PnY
-month = PnM
-week = PnW
-day = PnD
-hour = PTnH
-minute = PTnM
-seconds = PTnS
-yearmonthdayhourminutesecond 1 = PnYnMnDTnHnMnS
-yearmonthdayhourminutesecond 2 = PYYYYMMDDThhmmss
-year-month-dayThour:minute:second = PYYYY-MM-DDThh:mm:ss
-date and time = P<date>T<Ttime>
+PnY
+PnM
+PnW
+PnD
+PTnH
+PTnM
+PTnS
+PnYnMnDTnHnMnS // Can use some of the durations but must be in this order
+P<date>T<Ttime>
 ```
 You can combine the date and the time however you want, but it **must** follow the format `P<date>T<Ttime>`.
 
