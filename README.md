@@ -145,7 +145,15 @@ bool 2 = false
 ```
 
 # Number
-<!-- @TODO Add a graph here to show the number structure -->
+Here is the structure of a number:
+
+
+<picture>
+    <source alt="String Flowchart" srcset="./images/number-flowchart-dark.drawio.svg"  media="(prefers-color-scheme: dark)">
+    <img alt="String Flowchart" src="./images/number-flowchart-light.drawio.svg">
+</picture>
+
+
 Numbers can be 2 things, an integer or a float.
 ```
 num 1 = 123 // integer
