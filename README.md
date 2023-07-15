@@ -405,6 +405,15 @@ array = [
 ```
 
 # Dictionary
+Here is the structure of a dictionary:
+
+
+<picture>
+    <source alt="Dictionary Flowchart" srcset="./images/dictionary-flowchart-dark.drawio.svg"  media="(prefers-color-scheme: dark)">
+    <img alt="Dictionary Flowchart" src="./images/dictionary-flowchart-light.drawio.svg">
+</picture>
+
+
 There are 2 ways to make a dictionary: using a `:` or `= {}`
 ```
 dictionary 1:
