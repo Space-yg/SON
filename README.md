@@ -68,10 +68,10 @@ Here is the list of the data types:
 - [Other](#other)
 
 # String
-There are 4 types of strings: [string](!string-1), [raw](!row), [byte](!byte), and [char](!char)
+There are 4 types of strings: [normal string](!normal-string), [raw](!row), [byte](!byte), and [char](!char)
 
-## String
-String is structured as the following:
+## Normal String
+A normal string is structured as the following:
 
 
 <picture>
