@@ -67,11 +67,11 @@ Here is the list of the data types:
 - [Timestamp](#timestamp)
 - [Other](#other)
 
-## String
+# String
 There are 4 types of strings: [string](!string-1), [raw](!row), [byte](!byte), and [char](!char)
 
-### String
-String is formatted as the following:
+## String
+String is structured as the following:
 
 
 <picture>
@@ -80,42 +80,47 @@ String is formatted as the following:
 </picture>
 
 
-You can use double " or single ' quotation. There is no difference.
-
-You can add a backslash \ by just typing it. If you don't want to escape a character but add a backslash, add another \
-
-If you want to add double " or single ' quotation in a double " or single ' quotated string, respectively, just write it :D. The parser will just check if the beginning and end of the string have the same quotations.
-
-
-Examples:
+You can use a double `"` or single `'` quotation. There is no difference.
 ```
 string 1 = "this is a string"
-string 2 = "here is a new line \n"
-string 3 = "here is the characters \ then n \\n"
-string 4 = "here is a quataion " inside the string"
-string 5 = 'here is a quataion ' inside the string'
+string 2 = 'this is also a string'
 ```
 
-### Raw
+## Escape Characters
+Here is the structure of the escape characters:
+
+
+<picture>
+    <source alt="Escape Characters Flowchart" srcset="./images/escape-characters-flowchart-dark.drawio.svg"  media="(prefers-color-scheme: dark)">
+    <img alt="Escape Characters Flowchart" src="./images/escape-characters-flowchart-light.drawio.svg">
+</picture>
+
+If you want to add a double `"` or single `'` quotation in a double `"` or single `'` quoted string, respectively, just write it :D. The parser will just check if the beginning and end of the string have the same quotations.
+```
+string 1 = "here is a newline \n"
+string 2 = "here is NOT a newline \\n but just the characters \ and n"
+string 3 = "here is a quotaion " inside the string"
+string 4 = 'here is a quotaion ' inside the string'
+```
+
+## Raw
 Raw strings are like normal strings, but you cannot use escape characters.
 
-To write a raw string, use double " or single ' quotations at the start and the end of the string. Then add an `r` before the string
-
-Example:
+To write a raw string, add an `r` before the string
 ```
 raw 1 = r"this is a raw string"
 raw 2 = r"this is a literal \n, not a new line"
 ```
 
-### Byte
+## Byte
 Byte strings have the same structure as normal strings, except before the first quotation, there is a `b`.
 ```
 byte 1 = b"this is a byte string"
 byte 2 = b"you can escape characters here \n <- this is a new line"
 ```
-Byte strings will be converted to bytes upon parsing the file.
+Byte strings will be converted to bytes upon parsing.
 
-### Char
+## Char
 Char strings are just one-character strings. That's it...
 
 To make a char string, add a `c` before the string.
@@ -128,11 +133,11 @@ The following is an invalid char because it is more than 1 character:
 invalid char = c"ab" // ❌
 ```
 
-### Combine String Types
+## Combine String Types
 You can combine raw string with byte string or char string with byte string. You do that by just adding both letters that correspond to each.
 ```
 raw byte = rb"This is a raw byte string. No escape characters \n. The string will be converted to bytes"
-byte row = br"This is also a raw byte string."
+byte raw = br"This is also a raw byte string."
 char byte = cb"a"
 byte char = bc"a" // This is the same as char byte
 ```
