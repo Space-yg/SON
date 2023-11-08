@@ -238,7 +238,7 @@ int = 123i5 // This is invalid ❌
 You can combine integers with scientific notation.
 ```
 int 1 = 12e3i
-int 1 = 1.2e3i8 // This is valid ✅ since it will be computed to be 1200
+int 1 = 1.2e3i16 // This is valid ✅ since it will be computed to be 1200
 ```
 
 ### Integers with Hex, Octal, or binary
