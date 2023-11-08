@@ -204,6 +204,12 @@ num 1 = 12e3 // This will be evaluated as 12000
 num 2 = 1.2e3 // This will be evaluated as 1200
 num 3 = .12e3 // This will be evaluated as 120
 ```
+You can use an uppercase `E`.
+```
+num 1 = 12E3
+num 2 = 1.2E3
+num 3 = .12E3
+```
 You can add + or - after the `e`.
 ```
 num 1 = 12e+3 // This will be evaluated as 12000
@@ -213,6 +219,10 @@ num 3 = .12e-3 // This will be evaluated as 0.00012
 You **cannot** combine hex, octal, or binary with `e`.
 ```
 num = 0x123e3 // This is invalid ❌
+```
+You **cannot** use float after the scientific notaion.
+```
+num = 12e3.4 // This is invalid ❌
 ```
 
 ## Integers
