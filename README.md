@@ -1,16 +1,58 @@
+<!-- Hello there whoever is seeing this! -->
+<!--
+TODO
+- Generics:
+```
+Snowflake = string | integer
+id 1 = <Snowflake> 1
+id 2 = <Snowflake> "123"
+
+collection<T> = array<T> | set<T>
+array of integers = <arr<integer>> [1, 2, 3]
+```
+- Make a file for each data type.
+- Make a valid.son and invalid.son files for each data type. This will include the valid and invalid values for each data type.
+-
+-->
+
 # SON
 Simple Object Notation (SON) is an easier and more strict way of storing data.
 
+What's the purpose of SON? What makes it unique?
+1. Allocate the right amount of memory. No more, no less. ✅
+2. Type-check your data before using it. ✅
+3. Process the right type for each key. ✅
+4. A variety of data types. ✅
+
+Table of contents
+- [Structure](#structure)
+  - [Key-value Pairs](#key-value-pairs)
+  - [Indentaion](#indentaion)
+  - [Comments](#comments)
+- [Data Types](#data-types)
+  - [String](#string)
+  - [Boolean](#boolean)
+  - [Number](#number)
+  - [Array](#array)
+  - [Set](#set)
+  - [Dictionary](#dictionary)
+  - [Regex](#regex)
+  - [URL](#url)
+  - [Timestamp](#timestamp)
+  - [Other](#other)
+
 # Structure
 ## Key-value Pairs
-The structure of SON is simple. You write the key = value. That's it.
+The structure of SON is simple. You write `key = value`. That's it.
 ```
 key = "value"
 ```
-You can have spaces in between the varaible name.
+
+You can have spaces in between the variable names.
 ```
 this is all one variable = "A value"
 ```
+
 Variable names can be anything. Literally...
 ```
 😁 = "This a an emoji as variable"
@@ -18,6 +60,7 @@ Variable names can be anything. Literally...
 ?!@#$%^&*:;"'`-+_()[]{} = "These are spacial characters as varaible"
 123 = "Numbers can be variables too :D"
 ```
+
 If you want to add an escape character, you can write the variable as if it is a string. See [String](#string).
 ```
 "" = "This is an empty variable"
@@ -28,7 +71,7 @@ c"a" = "This is a variable whose key is one character"
 ```
 
 ## Indentaion
-The beginning indentation is very important. All variables must have the same indentation unless it is a [Dictionary](#dictionary).
+The beginning indentation is very important. All variables must have the same indentation unless it is a [Array](#array) or [Set](#set).
 
 You can indent with a space or a tab. They are both equal.
 
@@ -55,24 +98,50 @@ You can add comments with a double forward slash.
 string = "and this is a string" // This is also another comment
 ```
 
-# Data types
+# Data Types
 Here is the list of the data types:
 - [String](#string)
+  - [Normal String](#normal-string)
+  - [Escape Characters](#escape-characters)
+  - [Raw](#raw)
+  - [Byte](#byte)
+  - [Character](#character)
+  - [Combine String Types](#combine-string-types)
 - [Boolean](#boolean)
 - [Number](#number)
+  - [Hex, Octal, and Binary](#hex-octal-and-binary)
+  - [Scientific Notation](#scientific-notation)
+  - [Integers](#integers)
+    - [Specify Integer Bits](#specify-integer-bits)
+    - [Integers with Scientific Notation](#integers-with-scientific-notation)
+    - [Integers with Hex, Octal, or Binary](#integers-with-hex-octal-or-binary)
+    - [Unsigned Integers](#unsigned-integers)
+  - [Floats](#floats)
+    - [Specify Float Bits](#specify-float-bits)
+    - [Floats with Scientific Notation](#floats-with-scientific-notation)
+    - [Floats with Hex, Octal, or Binary](#floats-with-hex-octal-or-binary)
+    - [No Unsigned Float](#no-unsigned-float)
+  - [Special Values](#special-values)
 - [Array](#array)
-- [Dictionary](#dictionary)
 - [Set](#set)
+- [Dictionary](#dictionary)
 - [Regex](#regex)
 - [URL](#url)
 - [Timestamp](#timestamp)
 - [Other](#other)
 
 # String
+- [Normal String](#normal-string)
+- [Escape Characters](#escape-characters)
+- [Raw](#raw)
+- [Byte](#byte)
+- [Character](#character)
+- [Combine String Types](#combine-string-types)
+
 There are 4 types of strings: [normal string](!normal-string), [raw](!row), [byte](!byte), and [char](!char)
 
 ## Normal String
-A normal string is structured as the following:
+A normal string is structured as follows:
 
 
 <picture>
@@ -95,6 +164,7 @@ Here is the structure of the escape characters:
     <source alt="Escape Characters Flowchart" srcset="./images/escape-characters-flowchart-dark.drawio.svg"  media="(prefers-color-scheme: dark)">
     <img alt="Escape Characters Flowchart" src="./images/escape-characters-flowchart-light.drawio.svg">
 </picture>
+
 
 If you want to add a double `"` or single `'` quotation in a double `"` or single `'` quoted string, respectively, just write it :D. The parser will just check if the beginning and end of the string have the same quotations.
 ```
@@ -121,26 +191,34 @@ byte 2 = b"you can escape characters here \n <- this is a new line"
 ```
 Byte strings will be converted to bytes upon parsing.
 
-## Char
-Char strings are just one-character strings. That's it...
+## Character
+Character strings are just one-character strings. That's it...
 
 To make a char string, add a `c` before the string.
 ```
 empty char = c""
 char = c"a"
 ```
-The following is an invalid char because it is more than 1 character:
+
+The following is an invalid character because it is more than 1 character:
 ```
 invalid char = c"ab" // ❌
 ```
 
+You can have escape characters inside a character string.
+```
+escape character = c"\n" // This is valid ✅
+```
+
 ## Combine String Types
-You can combine raw string with byte string or char string with byte string. You do that by just adding both letters that correspond to each.
+You can combine raw string with byte string or char string with byte string. You do that by just adding both letters that correspond to each other.
 ```
 raw byte = rb"This is a raw byte string. No escape characters \n. The string will be converted to bytes"
 byte raw = br"This is also a raw byte string."
 char byte = cb"a"
 byte char = bc"a" // This is the same as char byte
+raw char = rc"\" // This is valid because raw strings do not have escape characters
+char raw = cr"\" // This is the same as raw char
 ```
 
 # Boolean
@@ -151,7 +229,21 @@ bool 2 = false
 ```
 
 # Number
-Here is the structure of a number:
+- [Hex, Octal, and Binary](#hex-octal-and-binary)
+- [Scientific Notation](#scientific-notation)
+- [Integers](#integers)
+  - [Specify Integer Bits](#specify-integer-bits)
+  - [Integers with Scientific Notation](#integers-with-scientific-notation)
+  - [Integers with Hex, Octal, or Binary](#integers-with-hex-octal-or-binary)
+  - [Unsigned Integers](#unsigned-integers)
+- [Floats](#floats)
+  - [Specify Float Bits](#specify-float-bits)
+  - [Floats with Scientific Notation](#floats-with-scientific-notation)
+  - [Floats with Hex, Octal, or Binary](#floats-with-hex-octal-or-binary)
+  - [No Unsigned Float](#no-unsigned-float)
+- [Special Values](#special-values)
+
+A number is structured as follows:
 
 
 <picture>
@@ -159,6 +251,8 @@ Here is the structure of a number:
     <img alt="Number Flowchart" src="./images/number-flowchart-light.drawio.svg">
 </picture>
 
+
+**Note: `number` is not a type. `integer` and `float` are the types.**
 
 Numbers can be 2 things, an integer or a float.
 ```
@@ -221,18 +315,23 @@ You **cannot** combine hex, octal, or binary with `e`.
 ```
 num = 0x123e3 // This is invalid ❌
 ```
-You **cannot** use float after the scientific notaion.
+You **cannot** use float after the scientific notation.
 ```
 num = 12e3.4 // This is invalid ❌
 ```
 
 ## Integers
-You can specify if a number is an integer by adding a suffix `i`
+- [Specify Integer Bits](#specify-integer-bits)
+- [Integers with Scientific Notation](#integers-with-scientific-notation)
+- [Integers with Hex, Octal, or Binary](#integers-with-hex-octal-or-binary)
+- [Unsigned Integers](#unsigned-integers)
+
+You can specify if a number is an integer by adding a suffix `i`.
 ```
 int = 123i
 ```
 
-### Specify Bits
+### Specify Integer Bits
 You can also specify how many bits should this integer take up.
 ```
 int8 = 123i8
@@ -240,7 +339,7 @@ int16 = 123i16
 ```
 If no amount of bits is specified, the integer can be as big or small as possible.
 
-The number of bits **must** be a factor of 8.
+The number of bits **must** be a multiple of 8.
 ```
 int = 123i5 // This is invalid ❌
 ```
@@ -252,7 +351,7 @@ int 1 = 12e3i
 int 1 = 1.2e3i16 // This is valid ✅ since it will be computed to be 1200
 ```
 
-### Integers with Hex, Octal, or binary
+### Integers with Hex, Octal, or Binary
 You can combine integers with hex, octal, and binary.
 ```
 int hex = 0x123i
@@ -266,14 +365,19 @@ unsigned int = 123ui
 You can add the number of bits, use scientific notation, and combine with hex, octal, or binary.
 
 ## Floats
+- [Specify Float Bits](#specify-float-bits)
+- [Floats with Scientific Notation](#floats-with-scientific-notation)
+- [Floats with Hex, Octal, or Binary](#floats-with-hex-octal-or-binary)
+- [No Unsigned Float](#no-unsigned-float)
+
 You can also specify if a number is a float using the suffix `f`.
 ```
 float 1 = 123f
 float 2 = .123f
 ```
 
-### Specify Bits
-Just like integer, you can specify the number of bits by writing it after the `f`. It **must** be a factor of 16.
+### Specify Float Bits
+Just like an integer, you can specify the number of bits by writing it after the `f`. It **must** be a multiple of 16.
 ```
 float16 = 123f16
 float32 = 123f32
@@ -289,7 +393,7 @@ float 1 = 12e3f
 float 1 = 1.2e-3f16
 ```
 
-### Floats with Hex, Octal, or binary
+### Floats with Hex, Octal, or Binary
 You can combine floats with hex, octal, and binary. For hex, You **must** specify the number of bits. It will be computed as the IEEE 754 standard.
 ```
 float hex 1 = 0x123f16 // This is 4.07778e-43
@@ -315,7 +419,7 @@ not a number 2 = NaN
 ```
 
 # Array
-Here is how arrays are structured:
+An array is structured as follows:
 
 
 <picture>
@@ -324,76 +428,51 @@ Here is how arrays are structured:
 </picture>
 
 
-Arrays are simple to write. There are 2 ways to write arrays.
-
-## Single Element Araay
-If an array has one element, you can write it like this `[value]`
+You make an array using `= []`.
 ```
-array 1 = ["value"]
-array 2 = [123]
+array 1 = [1, 2, 3]
+array 2 = ["value 1", "value 2", "value 3"]
 ```
 
-## Multi-Element Array
-If an array has more than one element, you will write the following syntax:
+You can write the array on multiple lines.
 ```
 array = [
-  value 1
-  value 2
-  value 3
-  ...
-]
-```
-You **must** have each value on a separate line. You **must** have all values have the same indentation.
-
-The following is an **invalid** array because one of the elements has a different indentation than the others.
-```
-array = [
-  "value" // This is OK ✅
-  "value" // This is OK ✅
-"value" // This is not OK ❌
+  1,
+  2,
+  3
 ]
 ```
 
-The following array is **valid** because all elements have the same indentation.
+If the elements are on multiple lines, you do not need to have a `,` at the end of each element.
 ```
 array = [
-"value"
-"value"
-"value"
+  1
+  2
+  3
 ]
 ```
 
-## Same Element Type Array
-If all of the elements in an array have the same type, then compute this array to be only this type with the same length.
+You can make a mix of new lines and `,`.
 ```
 array = [
-  "Hi"
-  "This"
-  "is"
-  "an"
-  "array"
-  "of"
-  "type"
-  "string"
+  1, 2
+  3
+  4,
+  5, 6, 7,
+  8
 ]
 ```
-The above will be computed as the following.
-```cpp
-// This is an example in C++. It can be made with any programming language.
-string array[8] = {
-  "Hi",
-  "This",
-  "is",
-  "an",
-  "array",
-  "of",
-  "type",
-  "string"
-};
+
+Elements can have different indentations.
+```
+array = [
+  1
+    2
+3
+]
 ```
 
-## Different Element Type Array
-Arrays can contain different values.
+Arrays can contain different types.
 ```
 array = [
   "string"
@@ -406,7 +485,7 @@ You can have arrays in arrays.
 ```
 array = [
   [
-    "this is another array"
+    "This is another array"
   ]
 ]
 ```
@@ -414,44 +493,51 @@ array = [
 You can have dictionaries in arrays.
 ```
 array = [
-  {
-    key = "this is another dictionary"
-  }
+  :
+    key = "this is a dictionary"
 ]
 ```
 
-# Dictionary
-Here is the structure of a dictionary:
+## Array of a Type
+You can specify the type of the elements in an array.
+```
+array = <array<string>> [
+  "Hi"
+  "This"
+  "is"
+  "an"
+  "array"
+  "of"
+  "type"
+  "string"
+]
+```
+The above will be computed as follows:
+```cpp
+// This is an example in C++. It can be made with any programming language.
+string arr[8] = {
+  "Hi",
+  "This",
+  "is",
+  "an",
+  "array",
+  "of",
+  "type",
+  "string"
+};
+```
+
+For more information, see [Collection of a Type](#collection-of-a-type).
+
+# Set
+A set is structured as follows:
 
 
 <picture>
-    <source alt="Dictionary Flowchart" srcset="./images/dictionary-flowchart-dark.drawio.svg"  media="(prefers-color-scheme: dark)">
-    <img alt="Dictionary Flowchart" src="./images/dictionary-flowchart-light.drawio.svg">
+    <source alt="Set Flowchart" srcset="./images/set-flowchart-dark.drawio.svg"  media="(prefers-color-scheme: dark)">
+    <img alt="Set Flowchart" src="./images/set-flowchart-light.drawio.svg">
 </picture>
 
-
-You make a dictionary using a `:`
-```
-dictionary:
-  key = "value"
-```
-
-You **must** indent all the key-value pairs inside the dictionary.
-
-You can stack dictionaries inside of each other.
-```
-dictionary:
-  key 1 = "value"
-  key 2 = "value"
-  dictionary:
-    another key = "value"
-  key 3 = "value"
-```
-
-# Set
-Here is a set structure:
-
-*Picture here*
 
 You can make a set using `= {}`
 ```
@@ -467,6 +553,11 @@ set 3 = {
   3
 }
 set 4 = {
+  1
+2
+    3
+}
+set 5 = {
   1, 2
   3
 }
@@ -475,7 +566,7 @@ All sets are valid set syntaxes and all of them are the same.
 
 A set cannot contain duplicates:
 ```
-set duplicates = {1, 2, 3, 1} // This is not OK ❌
+set duplicates = {1, 2, 3, 1} // This is invalid ❌
 ```
 
 A set can be empty.
@@ -504,6 +595,54 @@ set multiple types = {
     key = "value"
   {2, 5}
 }
+```
+
+You can specify the type of the set by doing the following:
+```
+set string = string{"value 1", "value 2", "value 3"}
+set array = array{["value 1", "value 2"], [1, 2], [[3, 4], "value 6"]}
+set set = set{{1}, {2}, {{3}, 4}}
+```
+
+You can specify one or more types for a set in a set.
+```
+set of set of integer = set<integer>{{1}, {2}, {1, 2}, {}} // Empty sets are valid for any set of any type
+set of set of string = set<string>{{"value 1", "value 2"}, {"value 3"}}
+set of array of integer = array<integer>{[1, 2], [3], [1], [2, 1]}
+```
+
+# Dictionary
+A dictionary is structured as follows:
+
+
+<picture>
+    <source alt="Dictionary Flowchart" srcset="./images/dictionary-flowchart-dark.drawio.svg"  media="(prefers-color-scheme: dark)">
+    <img alt="Dictionary Flowchart" src="./images/dictionary-flowchart-light.drawio.svg">
+</picture>
+
+
+You make a dictionary using a `:`
+```
+dictionary:
+  key = "value"
+```
+
+You **must** indent all the key-value pairs inside the dictionary.
+
+You can nest dictionaries inside of each other.
+```
+nested dictionary:
+  key 1 = "value"
+  key 2 = "value"
+  dictionary:
+    another key = "value"
+  key 3 = "value"
+```
+
+You can make an empty dictionary as follows:
+```
+empty dictionary:
+another empty dictionary:
 ```
 
 # Regex
@@ -540,6 +679,11 @@ url params = www.google.com?search=cats
 relative path = ./path
 ```
 When parsing a URL, you **must** use the programming language's standard library for parsing URLs.
+
+Relative paths **must** start with `./`.
+```
+relative path = path/another_path // This is invalid ❌
+```
 
 You **can** put a URL in a string. This will prevent the program from making the URLs into objects which could make the program faster.
 
@@ -615,10 +759,10 @@ Time.
 The hour from `00` to `24`.
 
 #### mm
-The minutes from `00` to `60`.
+The minute from `00` to `60`.
 
 #### ss
-The seconds from `00` to `60`.
+The second from `00` to `60`.
 
 #### .ssss
 The milliseconds. A dot `.` or a comma `,` is allowed for the seconds.
@@ -734,3 +878,99 @@ nothing...
 ```
 key = null
 ```
+
+# Type Checking
+You can specify the types that are valid inside for any value.
+```
+number = <integer> 2
+string = <string> "hi"
+array of anything = <array> [1, "hi", true]
+array of strings = <array<string>> ["value 1", "value 2", "value 3"]
+set of integers = <set<integer>> {1, 2, 3}
+```
+
+You can nest types with other types as follows:
+```
+array of arrays of integers = <array<set<integer>>> [{1, 2}, {2, 1}, {1}, {1}, {}] // Empty set is a valid set of integers
+set of array of regex = <set<array<regex>>> {/regex 1/, /regex 2/i, py/regex 3/m}
+```
+
+You can use `|` to specify more than one type.
+```
+array of strings or integers = <array<string | integer>> [1, "value 2", 3, "value 4"]
+```
+
+You can use `&` to specify both types at the same time. This can be used on some of the types.
+```
+raw byte string = <string<raw & byte>> rb"This is a raw byte string"
+```
+
+## String Types
+You can specify what type of string you want to check for.
+
+### Any String Type
+Denoted as `<string>`.
+```
+string = <string> "This is a string"
+byte string = <string> b"This is a byte string"
+```
+
+### String Raw Type
+Denoted as `<string<raw>>` or `<string<r>>`.
+```
+raw string = <string<raw>> r"This \is a \raw \string" // This is valid ✅
+normal string = <string<r>> "This is a normal string" // This is valid ✅
+not a raw string = <string<raw>> "This is not \n a raw string" // This will give an error because there is an escape character ❌
+```
+
+### String Character Type
+Denoted as `<string<character>>`, `<string<char>>`, or `<string<c>>`.
+```
+character string = <string<character>> c"a"
+empty string = <string<char>> "" // This is valid ✅
+normal string = <string<c>> "b" // This is valid ✅
+escape string = <string<c>> "\n" // This is valid ✅
+invalid string = <string<character>> "ab" // This is not valid ❌
+```
+
+### String Byte Type
+Denoted as `<string<byte>>` or `<string<b>>`.
+```
+byte string = <string<byte>> b"This is a byte string"
+byte string = <string<byte>> "This is a normal string" //  This is not valid ❌
+```
+
+### Mix String Types
+You can mix string types by using `&`.
+```
+byte raw string = <string<byte & raw>> br"This is a byte raw string"
+char raw string = <string<char & r>> rc"\"
+char byte string = <string<c & b>> cb"a"
+```
+
+## Integer Types
+You can specify what type of integer you want to check for.
+
+### Integer Type
+Denoted as `<integer>` or `<int>`.
+```
+integer = <integer> 2
+int = <int> 5
+```
+
+The rest of the examples will use `<integer>`, but `<int>` works for all of them.
+
+### Integer Bits Type
+Denoted as `<integer<8>>`, `<integer<16>>`, `<integer<24>>`, etc.
+```
+int 1 = <integer<16>> 123
+int 2 = <integer<16>> 123i16
+int 3 = <integer<16>> 123i8 // This is invalid ❌
+int 3 = <integer<16>> 123.0 // This is invalid ❌
+int 3 = <integer<8 & 16>> 123 // This is invalid ❌
+```
+
+What is the difference between `<integer<16>>` and `i16`?
+There is no difference. Both of them will check the value of the integer and will give an error based on it. `<integer<16>>` is mainly used when you want to nest it in other types such as [arrays](#array-types) or [sets](#set-types).
+
+*To be continued*
