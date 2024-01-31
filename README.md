@@ -62,6 +62,7 @@ Here is the list of the data types:
 - [Number](#number)
 - [Array](#array)
 - [Dictionary](#dictionary)
+- [Set](#set)
 - [Regex](#regex)
 - [URL](#url)
 - [Timestamp](#timestamp)
@@ -429,17 +430,13 @@ Here is the structure of a dictionary:
 </picture>
 
 
-There are 2 ways to make a dictionary: using a `:` or `= {}`
+You make a dictionary using a `:`
 ```
-dictionary 1:
+dictionary:
   key = "value"
-dictionary 2 = {
-  key = "value"
-}
 ```
-In the example, `dictionary 1` and `dictionary 2` are the same dictionary.
 
-When using `:` to make a dictionary, you **must** indent all the key-value pairs inside.
+You **must** indent all the key-value pairs inside the dictionary.
 
 You can stack dictionaries inside of each other.
 ```
@@ -449,6 +446,64 @@ dictionary:
   dictionary:
     another key = "value"
   key 3 = "value"
+```
+
+# Set
+Here is a set structure:
+
+*Picture here*
+
+You can make a set using `= {}`
+```
+set 1 = {1, 2, 3}
+set 2 = {
+  1,
+  2,
+  3
+}
+set 3 = {
+  1
+  2
+  3
+}
+set 4 = {
+  1, 2
+  3
+}
+```
+All sets are valid set syntaxes and all of them are the same.
+
+A set cannot contain duplicates:
+```
+set duplicates = {1, 2, 3, 1} // This is not OK ❌
+```
+
+A set can be empty.
+```
+empty set = {}
+```
+
+A set can have any type inside it.
+```
+set string = {"value 1", "value 2", "value 3"}
+set directory = {
+  directory 1:
+    key = "value"
+  directory 2:
+    key 1 = "value"
+    key 2 = "value"
+}
+set set = {{}, {1}, {2}, {1, 2}}
+```
+
+A set can have multiple types inside of it.
+```
+set multiple types = {
+  "string", 1
+  directory:
+    key = "value"
+  {2, 5}
+}
 ```
 
 # Regex
